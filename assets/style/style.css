@@ -84,6 +84,10 @@ main {
   background-color: var(--color_quaternary);
 }
 
+.grid_container .cell.bomb {
+  background-color: var(--color_dark);
+}
+
 .output {
   width: 100%;
   text-align: center;

@@ -22,6 +22,7 @@ btnStart.addEventListener("click", function () {
 //Reset del gioco
 function reset() {
   gridContainer.innerHTML = "";
+  bombsList = [];
 }
 
 //Generazione griglia: definizione dimensioni della griglia e generazione celle sulla base del numero totale di celle
@@ -61,14 +62,19 @@ function handleClickCell() {
   const cellNumber = this._cellID;
   console.log(cellNumber);
 
-  this.classList.add("clicked");
+  if (bombsList.includes(cellNumber)) {
+    this.classList.add("bomb");
+    isEndGame();
+  } else {
+    this.classList.add("clicked");
+  }
 
   // Check fine gioco
-  if (isEndGame() === cellTotal) {
-    console.log("Gioco terminato");
-    gridContainer.innerHTML = `
-      <div class="output">Hai terminato il gioco!</div>`;
-  }
+  // if (isEndGame() === cellTotal) {
+  //   console.log("Gioco terminato");
+  //   gridContainer.innerHTML = `
+  //     <div class="output">Hai terminato il gioco!</div>`;
+  // }
 }
 
 //Creazione bombe
@@ -87,6 +93,7 @@ function generateBombs() {
 }
 
 function isEndGame() {
-  const clickedCells = document.querySelectorAll(".clicked");
-  return clickedCells.length;
+  console.log("FINE: Hai preso una bomba!");
+  // const clickedCells = document.querySelectorAll(".clicked");
+  // return clickedCells.length;
 }
