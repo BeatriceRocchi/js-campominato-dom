@@ -5,24 +5,33 @@ const levels = [100, 81, 49];
 
 let cellTotal;
 
-//Generazione griglia di gioco
+//Inizio della partita: resettare, in base al livello selezionato stabilire il numero totale di celle, generare la griglia e generare le bombe
 btnStart.addEventListener("click", function () {
   reset();
 
   cellTotal = levels[levelSelected.value];
-  defineGridDimension();
 
-  for (let i = 1; i <= cellTotal; i++) {
-    const cell = createCell(i, cellTotal);
-    gridContainer.append(cell);
-  }
+  generateGrid();
 });
 
 // ------ FUNCTIONS ------ //
+
+//Reset del gioco
 function reset() {
   gridContainer.innerHTML = "";
 }
 
+//Generazione griglia: definizione dimensioni della griglia e generazione celle sulla base del numero totale di celle
+function generateGrid() {
+  defineGridDimension();
+
+  for (let i = 1; i <= cellTotal; i++) {
+    const cell = createCell(i);
+    gridContainer.append(cell);
+  }
+}
+
+//Definizione dimensioni griglia
 function defineGridDimension() {
   if (cellTotal === levels[0]) {
     gridContainer.style.gridTemplateColumns = "repeat(10, 1fr)";
@@ -33,26 +42,30 @@ function defineGridDimension() {
   }
 }
 
-function createCell(index, totalNumberOfCells) {
+//Creazione cella
+function createCell(index) {
   const cellElement = document.createElement("div");
   cellElement.className = "cell";
   cellElement._cellID = index;
 
-  cellElement.addEventListener("click", function () {
-    const cellNumber = this._cellID;
-    console.log(cellNumber);
-
-    this.classList.add("clicked");
-
-    // Check fine gioco
-    if (isEndGame() === totalNumberOfCells) {
-      console.log("Gioco terminato");
-      gridContainer.innerHTML = `
-      <div class="output">Hai terminato il gioco!</div>`;
-    }
-  });
+  cellElement.addEventListener("click", handleClickCell);
 
   return cellElement;
+}
+
+//Gestione click cella
+function handleClickCell() {
+  const cellNumber = this._cellID;
+  console.log(cellNumber);
+
+  this.classList.add("clicked");
+
+  // Check fine gioco
+  if (isEndGame() === cellTotal) {
+    console.log("Gioco terminato");
+    gridContainer.innerHTML = `
+      <div class="output">Hai terminato il gioco!</div>`;
+  }
 }
 
 function isEndGame() {
