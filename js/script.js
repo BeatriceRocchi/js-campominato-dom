@@ -98,7 +98,10 @@ function generateBombs() {
   return bombsList;
 }
 
+//Termine del gioco: apparizione di tutte le bombe, stampa messagio finale
 function isEndGame(win) {
+  showBombs();
+
   if (win) {
     messageContainer.innerHTML = "Complimenti, hai vinto!";
   } else {
@@ -106,8 +109,15 @@ function isEndGame(win) {
   }
 
   messageContainer.innerHTML += `<div>Il tuo punteggio è di ${score} su ${cellTotal}</div>`;
+}
 
-  console.log("Hai vinto: ", win);
-  console.log("Score: ", score);
-  console.log("Totale celle: ", cellTotal);
+//Apparizione di tutte le bombe
+function showBombs() {
+  const allCells = document.querySelectorAll(".cell");
+
+  for (let i = 1; i <= cellTotal; i++) {
+    if (bombsList.includes(i)) {
+      allCells[i - 1].classList.add("bomb");
+    }
+  }
 }
