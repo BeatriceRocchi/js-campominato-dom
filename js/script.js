@@ -1,6 +1,7 @@
 const btnStart = document.getElementById("btn_start");
 const gridContainer = document.querySelector(".grid_container");
 const levelSelected = document.getElementById("game-level");
+let bombsList = [];
 const levels = [100, 81, 49];
 
 let cellTotal;
@@ -12,10 +13,12 @@ btnStart.addEventListener("click", function () {
   cellTotal = levels[levelSelected.value];
 
   generateGrid();
+
+  bombsList = generateBombs();
+  console.log("Lista bombe", bombsList);
 });
 
 // ------ FUNCTIONS ------ //
-
 //Reset del gioco
 function reset() {
   gridContainer.innerHTML = "";
@@ -66,6 +69,21 @@ function handleClickCell() {
     gridContainer.innerHTML = `
       <div class="output">Hai terminato il gioco!</div>`;
   }
+}
+
+//Creazione bombe
+function generateBombs() {
+  const bombsNumber = 16;
+
+  do {
+    const bombID = Math.ceil(Math.random() * cellTotal);
+
+    if (!bombsList.includes(bombID)) {
+      bombsList.push(bombID);
+    }
+  } while (bombsList.length < bombsNumber);
+
+  return bombsList;
 }
 
 function isEndGame() {
