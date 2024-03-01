@@ -57,7 +57,7 @@ header img {
 /* Main */
 main {
   height: calc(100% - 60px - 25px);
-  padding: 60px 0;
+  padding: 10px 0;
   background-image: url(../img/img2.webp);
   background-size: cover;
   background-position: center;
@@ -67,7 +67,7 @@ main {
 
 .grid_container {
   display: grid;
-  width: 500px;
+  width: 450px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -90,17 +90,22 @@ main {
 
 .grid_container .cell.bomb {
   background-color: var(--color_dark);
+  background-image: url(../img/explodingkitten.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .block_click {
   pointer-events: none;
+  filter: brightness(0.5);
 }
 
 .message_container {
   color: var(--color_quaternary);
   margin: 0;
-  font-size: 2rem;
-  line-height: 3rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   font-weight: 400;
   letter-spacing: 6px;
   font-style: italic;
