@@ -1,10 +1,11 @@
 const btnStart = document.getElementById("btn_start");
 const gridContainer = document.querySelector(".grid_container");
 const levelSelected = document.getElementById("game-level");
+const bombsNumber = 16;
+let cellTotal;
+let score = 0;
 let bombsList = [];
 const levels = [100, 81, 49];
-
-let cellTotal;
 
 //Inizio della partita: resettare, in base al livello selezionato stabilire il numero totale di celle, generare la griglia e generare le bombe
 btnStart.addEventListener("click", function () {
@@ -16,6 +17,7 @@ btnStart.addEventListener("click", function () {
 
   bombsList = generateBombs();
   console.log("Lista bombe", bombsList);
+  // TODO: console.log da eliminare alla fine (solo per check)
 });
 
 // ------ FUNCTIONS ------ //
@@ -60,27 +62,28 @@ function createCell(index) {
 //Gestione click cella
 function handleClickCell() {
   const cellNumber = this._cellID;
+  let isWin = false;
   console.log(cellNumber);
 
+  //Check fine gioco per aver cliccato una bomba
   if (bombsList.includes(cellNumber)) {
     this.classList.add("bomb");
-    isEndGame();
+    isEndGame(isWin);
   } else {
     this.classList.add("clicked");
   }
 
-  // Check fine gioco
-  // if (isEndGame() === cellTotal) {
-  //   console.log("Gioco terminato");
-  //   gridContainer.innerHTML = `
-  //     <div class="output">Hai terminato il gioco!</div>`;
-  // }
+  score = document.querySelectorAll(".clicked").length;
+
+  // Check fine gioco per aver cliccato tutte le celle che non hanno bombe
+  if (score === cellTotal - bombsNumber) {
+    isWin = true;
+    isEndGame(isWin);
+  }
 }
 
 //Creazione bombe
 function generateBombs() {
-  const bombsNumber = 16;
-
   do {
     const bombID = Math.ceil(Math.random() * cellTotal);
 
@@ -92,8 +95,11 @@ function generateBombs() {
   return bombsList;
 }
 
-function isEndGame() {
-  console.log("FINE: Hai preso una bomba!");
-  // const clickedCells = document.querySelectorAll(".clicked");
-  // return clickedCells.length;
+function isEndGame(winningOrLosing) {
+  console.log("Hai vinto: ", winningOrLosing);
+  console.log("Score: ", score);
+  console.log("Totale celle: ", cellTotal);
+
+  // gridContainer.innerHTML = `
+  //   <div class="output">Hai terminato il gioco!</div>`;
 }
