@@ -1,5 +1,6 @@
 const btnStart = document.getElementById("btn_start");
 const gridContainer = document.querySelector(".grid_container");
+const messageContainer = document.querySelector(".message_container");
 const levelSelected = document.getElementById("game-level");
 const bombsNumber = 16;
 let cellTotal;
@@ -24,7 +25,9 @@ btnStart.addEventListener("click", function () {
 //Reset del gioco
 function reset() {
   gridContainer.innerHTML = "";
+  messageContainer.innerHTML = "";
   bombsList = [];
+  score = 0;
 }
 
 //Generazione griglia: definizione dimensioni della griglia e generazione celle sulla base del numero totale di celle
@@ -95,11 +98,16 @@ function generateBombs() {
   return bombsList;
 }
 
-function isEndGame(winningOrLosing) {
-  console.log("Hai vinto: ", winningOrLosing);
+function isEndGame(win) {
+  if (win) {
+    messageContainer.innerHTML = "Complimenti, hai vinto!";
+  } else {
+    messageContainer.innerHTML = "Peccato, hai preso una bomba!";
+  }
+
+  messageContainer.innerHTML += `<div>Il tuo punteggio è di ${score} su ${cellTotal}</div>`;
+
+  console.log("Hai vinto: ", win);
   console.log("Score: ", score);
   console.log("Totale celle: ", cellTotal);
-
-  // gridContainer.innerHTML = `
-  //   <div class="output">Hai terminato il gioco!</div>`;
 }
