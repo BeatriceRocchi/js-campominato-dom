@@ -17,14 +17,13 @@ btnStart.addEventListener("click", function () {
   generateGrid();
 
   bombsList = generateBombs();
-  console.log("Lista bombe", bombsList);
-  // TODO: console.log da eliminare alla fine (solo per check)
 });
 
 // ------ FUNCTIONS ------ //
 //Reset del gioco
 function reset() {
   gridContainer.innerHTML = "";
+  gridContainer.classList.remove("block_click");
   messageContainer.innerHTML = "";
   bombsList = [];
   score = 0;
@@ -98,9 +97,11 @@ function generateBombs() {
   return bombsList;
 }
 
-//Termine del gioco: apparizione di tutte le bombe, stampa messagio finale
+//Termine del gioco: apparizione di tutte le bombe, blocco del click sulle celle, stampa messagio finale
 function isEndGame(win) {
   showBombs();
+
+  gridContainer.classList.add("block_click");
 
   if (win) {
     messageContainer.innerHTML = "Complimenti, hai vinto!";

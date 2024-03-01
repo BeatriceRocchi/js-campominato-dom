@@ -92,6 +92,10 @@ main {
   background-color: var(--color_dark);
 }
 
+.block_click {
+  pointer-events: none;
+}
+
 .message_container {
   color: var(--color_quaternary);
   margin: 0;
