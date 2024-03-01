@@ -1,0 +1,103 @@
+:root {
+  --color_primary: #771011;
+  --color_secondary: #f26823;
+  --color_tertiary: #f58d22;
+  --color_quaternary: #daa520;
+  --color_quaternary_light: #ffe4c4;
+  --color_dark: #323232;
+}
+
+body {
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  color: var(--color_dark);
+}
+
+h1 {
+  font-size: 1.6rem;
+  padding-left: 20px;
+  margin: 0;
+}
+
+/* Header */
+header {
+  height: 60px;
+  background-color: var(--color_quaternary);
+}
+
+header img {
+  height: 80%;
+  border-radius: 10px;
+}
+
+.commands_box #game-level {
+  background-color: var(--color_quaternary_light);
+  font-size: 0.9rem;
+  border-radius: 6px;
+  padding: 4px;
+  margin: 0 20px 0 10px;
+  cursor: pointer;
+}
+
+.commands_box .btn_custom {
+  background-color: var(--color_primary);
+  color: var(--color_quaternary_light);
+}
+
+.commands_box #game-level:hover,
+.commands_box .btn_custom:hover {
+  box-shadow: 0 0 10px var(--color_dark);
+}
+
+.commands_box .btn_custom:hover {
+  background-color: var(--color_secondary);
+  color: var(--color_dark);
+}
+
+/* Main */
+main {
+  height: calc(100% - 60px - 25px);
+  background-image: url(../img/img2.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.grid_container {
+  display: grid;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.grid_container .cell {
+  aspect-ratio: 1;
+  background-color: var(--color_primary);
+  border: 1.5px solid var(--color_quaternary_light);
+  color: var(--color_dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid_container .cell.clicked {
+  background-color: var(--color_quaternary);
+}
+
+.output {
+  width: 100%;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--color_quaternary_light);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Footer */
+footer {
+  height: 25px;
+  background-color: goldenrod;
+}
