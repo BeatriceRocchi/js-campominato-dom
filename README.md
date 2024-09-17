@@ -1,17 +1,25 @@
-Campo minato
-===
-Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe. Attenzione: **nella stessa cella può essere posizionata al massimo una bomba, perciò nell’array delle bombe non potranno esserci due numeri uguali.
-In seguito l’utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina. Altrimenti la cella cliccata si colora di azzurro e l’utente può continuare a cliccare sulle altre celle.
-La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti (ovvero quando ha rivelato tutte le celle che non sono bombe).
-Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
+# Minefield - Exploding Kittens
 
-**BONUS 1:**
+Replica of a simplified version of the game "Minefield" themed Exploding Kittens in HTML, CSS and JavaScript.
 
-Aggiungere una `select` accanto al bottone di generazione, che fornisca una scelta tra tre diversi livelli di difficoltà:
-- difficoltà 1 ⇒ 100 caselle, con un numero compreso tra 1 e 100, divise in 10 caselle per 10 righe;
-- difficoltà 2 ⇒ 81 caselle, con un numero compreso tra 1 e 81, divise in 9 caselle per 9 righe;
-- difficoltà 3 ⇒ 49 caselle, con un numero compreso tra 1 e 49, divise in 7 caselle per 7 righe;
+## Installation
 
-**BONUS 2 :**
-- accendere tutte le bombe
-- congelare la griglia
+In order to access the code, go to my GitHub at the following link: https://github.com/BeatriceRocchi/js-campominato-dom.
+Now clone the repository, open it in your IDE and just press the GoLive button to open the game in a new browser tab.
+
+## Description
+
+![CampoMinato](assets/img/CampoMinato.gif)
+
+The web app is a simplified version of the game "Minefield" but the theme is inspired by the cards game Exploding Kittens.
+
+To start the game, select the difficulty level from the drop-down menu at the top right and press the start button. The game allows to choose the size of the game board with the same number of exploding kittens:
+
+- easy: 100 cells
+- medium: 81 cells
+- difficult: 49 cells (less cells and highest possibility to find kittens)
+
+After the click on the start button, the game grid appears in the center of the screen. The player can now click each cell hoping not to find an exploding kitten. The cell turns orange if there is no kitten.
+
+The game ends when the player clicks on an exploding kitten or when he reaches the maximum number of attempts allowed (i.e. when he has revealed all the cells that are not kittens).
+At the end of the game the score is shown at the bottom and the game grid reveals the position of all the exploding kittens.
